@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Exchanged</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_currency_conversion">CurrencyConversionActivity</string>
+
+    <string name="rate_import_notification_title">Exchanged: new currency rates imported</string>
+    <string name="rate_import_notification_message">Currency rates import completed at %tc</string>
+</resources>

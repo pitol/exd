@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewFlag"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:minHeight="120px"
+        android:minWidth="180px"
+        android:background="#ff2615" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Country name"
+        android:id="@+id/textViewCountry"
+        android:textSize="22sp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageViewFlag"
+        android:paddingStart="@dimen/currency_left_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="currency name - currency symbol"
+        android:id="@+id/textViewCurrency"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/imageViewFlag"
+        android:layout_below="@+id/textViewCountry"
+        android:paddingStart="@dimen/currency_left_margin" />
+
+</merge>
