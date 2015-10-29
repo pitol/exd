@@ -7,12 +7,15 @@ import java.util.TimeZone;
 /**
  * Calculate the next or previous date and time the rates are available for importing relative to
  * a reference time.
- * BCB make available a new rates file daily at 01:00 PM, in it's local time (America/Sao_Paulo),
+ * BCB make available a new rates file daily at around 01:00 PM, in it's local time (America/Sao_Paulo),
  * except on weekends and holidays.
+ * This implementation will use the 02:00 PM, bcb local time, as the time a new rate file is available.
  * This implementation actually don't check for holidays, clients will have to handle the rates
  * unavailability on these dates.
  */
 public class RateAvailableTime {
+
+    private static final int AVAILABLE_HOUR = 14;
 
     /**
      * @return the next time for the service's execution, after the reference time.
@@ -34,7 +37,7 @@ public class RateAvailableTime {
     public Date getPreviousAvailableTime(Date referenceTime) {
         Calendar cal = zonedCalendar();
         cal.setTime(referenceTime);
-        if (cal.get(Calendar.HOUR_OF_DAY) < 13) {
+        if (cal.get(Calendar.HOUR_OF_DAY) < AVAILABLE_HOUR) {
             cal.add(Calendar.DAY_OF_MONTH, -1);
         }
         rollCalendarOutsideWeekend(cal, false);
@@ -47,7 +50,7 @@ public class RateAvailableTime {
     }
 
     private void adjustTimeToOnePM(Calendar cal) {
-        cal.set(Calendar.HOUR_OF_DAY, 13);
+        cal.set(Calendar.HOUR_OF_DAY, AVAILABLE_HOUR);
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);

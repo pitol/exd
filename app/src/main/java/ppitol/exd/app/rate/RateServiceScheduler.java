@@ -26,9 +26,9 @@ public class RateServiceScheduler {
         Date runDate = new Date(nextFetchDate.getTime() + new Random().nextInt(600000));
 
         Intent intent = new Intent(context, RateServiceReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 123456, intent, 0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC, runDate.getTime(), pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, runDate.getTime(), pendingIntent);
 
         Log.d(TAG, "Scheduled rate import for fetch date " + runDate);
     }
@@ -36,7 +36,7 @@ public class RateServiceScheduler {
     public void cancelSchedule(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, RateServiceReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 123456, intent, 0);
         alarmManager.cancel(pendingIntent);
     }
 }
