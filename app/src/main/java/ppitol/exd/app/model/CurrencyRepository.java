@@ -126,4 +126,11 @@ public class CurrencyRepository {
         ContentValues values = rateValues(currencyCode, date, rate);
         context.getContentResolver().insert(RateContract.RATE_URI, values);
     }
+
+    public void deleteCurrenciesOlderThan(Date date) {
+        context.getContentResolver().delete(
+                RateContract.RATE_URI,
+                RateContract.RateColumns.DATE + " < ?",
+                new String[] { date.getTime() + "" });
+    }
 }

@@ -71,6 +71,9 @@ class BCBRateImporter {
 
             // The file does not include BCB's own currency
             currencyRepository.insertCurrency(fetchDateTime, "BRL", BigDecimal.ONE);
+
+            // Remove any previous currency
+            currencyRepository.deleteCurrenciesOlderThan(fetchDateTime);
         } catch (FileNotFoundException e) {
             Log.w(TAG, "Rates not available at " + ratesUrl);
         } catch (Exception e) {
